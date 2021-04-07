@@ -1,0 +1,67 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+	freopen("road.in","r",stdin);
+	freopen("road.out,"w",stdout);
+	int a[100001],n,m[10001],i,j,p,ans,w,x,s,q,z,y,l;
+	scanf("%d",&n);
+	for(i=1;i<=n;i++)
+	{
+	scanf("%d",&a[i]);
+	for(j=1;j<=10000;j++)
+	if(a[i]>=j)
+	m[j]++;
+    }
+    a[n+1]=0;
+    for(i=10001;i>=1;i--)
+    {
+    	if(m[i]==n)
+    	{
+    	    p=i;
+    	    break;
+		}
+	}
+	for(i=1;i<=n;i++)
+	{
+		a[i]-=p;
+		ans=p;
+	}
+	q=0;
+	for(j=1;j<=n+10000;j++)
+    {
+    	if(w==n)
+    	break;
+    	w=0;
+    	q=0;
+	 for(y=1;y<=n;y++)
+     {	
+    	if(a[y]==0)
+    	{
+    		w++;
+    		if(q>=1)
+    		{
+			s=y-1;
+    		ans++;
+    		for(i=1;i<=s;i++)
+    		a[i]--;
+    		q=0;
+    	    }
+    	    if(w==n)
+    	    {
+    	    break;
+    	    break;
+    	    }
+		}
+    	else
+    	q++;
+        if(w+q==n && q>=1)
+    	{
+    		ans++;
+    		for(z=n;z>w;z--)
+    		a[z]--;
+		}
+	 }
+    }
+    printf("%d",ans);
+}

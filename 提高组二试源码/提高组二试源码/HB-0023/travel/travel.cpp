@@ -1,0 +1,71 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+	freopen("travel.in","r",stdin);
+	freopen("travel.out","w",stdout);
+	int i,j,a[5001],b[5001],c[5001],m,n,ans,q;
+	for(i=1;i<=5001;i++)
+	c[i]=0;
+	scanf("%d%d",&n,&m);
+	for(i=1;i<=m;i++)
+	scanf("%d%d",&a[i],&b[i]);
+	ans=1;
+	q=1;
+	for(i=1;i<=n;i++)
+	{
+		for(j=1;j<=n;j++)
+		{
+			if(a[j]==ans)
+			{
+				if(c[ans]==0)
+				{
+				c[ans]=q;
+				q++;
+			    }
+				ans=b[j];
+			}
+			else if(b[j]==ans)
+			{
+				if(c[ans]==0)
+				{
+				c[ans]+=q;
+				q++;
+			    }
+				ans=a[j];
+			}
+		}
+	}
+	
+	for(i=1;i<=n;i++)
+	{
+	   if(c[i]==1)
+	   printf("%d",i);		
+	}
+		for(i=1;i<=n;i++)
+	{
+	   if(c[i]==2)
+	   printf("%d",i);		
+	}
+		for(i=1;i<=n;i++)
+	{
+	   if(c[i]==3)
+	   printf("%d",i);		
+	}
+		for(i=1;i<=n;i++)
+	{
+	   if(c[i]==4)
+	   printf("%d",i);		
+	}
+		for(i=1;i<=n;i++)
+	{
+	   if(c[i]==5)
+	   printf("%d",i);		
+	}
+		for(i=1;i<=n;i++)
+	{
+	   if(c[i]==6)
+	   printf("%d",i);		
+	}
+	return 0;
+}

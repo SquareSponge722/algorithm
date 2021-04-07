@@ -1,0 +1,74 @@
+#include <string>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+using namespace std;
+const int mv[2][2] = {{1, 0}, {0, 1}};
+struct Info {
+	string w, s;
+};
+char map[10][1000];
+int n, m, ans;
+vector<Info> info;
+Info tmp;
+void dfs2(int x, int y, int step) {
+	if (x == n && y == m) {
+		info.push_back(tmp);
+		return;
+	}
+	for (int k = 0; k < 2; ++k) {
+		int t_x = x + mv[k][0];
+		int t_y = y + mv[k][1];
+		if (t_x > n || t_y > m) continue;
+		tmp.w[step] = (k ? 'R' : 'D');
+		tmp.s[step + 1] = map[t_x][t_y];
+		dfs2(t_x, t_y, step + 1);
+	}
+}
+bool cmp_w(const Info &a, const Info &b) {
+	return a.w > b.w;
+}
+bool play() {
+	info.clear();
+	tmp.s[0] = map[1][1];
+	dfs2(1, 1, 0);
+	/*for (int i = 1; i <= n; ++i) {
+		for (int j = 1; j <= m; ++j)
+			cout << (map[i][j]);
+		cout << endl;
+	}
+	for (int i = 0; i < info.size(); ++i)
+		cout << info[i].w << ' ' << info[i].s << endl;
+	cout << endl;*/
+	sort(info.begin(), info.end(), cmp_w);
+	for (int i = 1; i < info.size(); ++i)
+		if (info[i - 1].s < info[].s) {
+			/*for (int i = 1; i <= n; ++i) {
+				for (int j = 1; j <= m; ++j)
+					cout << (map[i][j]);
+				cout << endl;
+			} cout << endl;*/
+			return false;
+		} return true;
+}
+void dfs(int x, int y) {
+	if (y == m + 1) ++x, y = 1;
+	if (x == n + 1) {
+		play() ? (++ans) : 0;
+		return;
+	}
+	map[x][y] = '1';
+	dfs(x, y + 1);
+	map[x][y] = '0';
+	dfs(x, y + 1);
+}
+
+int main() {
+	cin >> n >> m;
+	string t_w(m + n - 2, '\0');
+	string t_s(m + n - 1, '\0');
+	tmp.w = t_w, tmp.s = t_s;
+	dfs(1, 1);
+	cout << ans << endl;
+	return 0;
+}

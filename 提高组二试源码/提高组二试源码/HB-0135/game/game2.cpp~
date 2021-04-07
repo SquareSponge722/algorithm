@@ -1,0 +1,53 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+const int N = 8;
+const int M = 1000000 + 5;
+const int mod = 1e9 + 7;
+
+long long good[1<<N][1<<N];
+long long f[2][1<<N];
+
+int main() {
+	freopen("game.in", "r", stdin);
+//	freopen("game.out", "w", stdout);
+	int n, m;
+	scanf("%d %d", &n, &m);
+	int all = (1 << n) - 1;
+	int cnt = 0;
+	for (int i = 0; i <= all; i++) {
+		for (int j = 0; j <= all; j++) {
+			int ok = 1;
+			for (int k = 1; k < n; k++) {
+				if (((i >> k) & 1) <= ((j >> (k-1)) & 1)) {
+					ok = 0;
+					break;
+				}
+			}
+			good[i][j] = ok;
+			cnt += ok;
+		}
+	}
+	int t = 0;
+	for (int i = 0; i <= all; i++) {
+		f[t][i] = 1;
+	}
+	for (int i = 2; i <= m; i++) {
+		t ^= 1;
+		memset(f[t], 0, sizeof f[t]);
+		for (int j = 0; j <= all; j++) {
+			for (int k = 0; k <= all; k++) {
+				if (good[k][j]) {
+					(f[t][j] += f[t^1][k]) %= mod;
+				}
+			}
+		}
+	}
+	long long ans = 0;
+	for (int i = 0; i <= all; i++) {
+		(ans += f[t][i]) %= mod;
+	}
+	printf("%lld\n", ans);
+	return 0;
+}
