@@ -1,6 +1,6 @@
 /*
 by SS 2020/12/19 10:26
-¼òÒ×·â×°Á´±í
+ï¿½ï¿½ï¿½×·ï¿½×°ï¿½ï¿½ï¿½ï¿½
 for Louise Francoise le Blanc de la valliere
 */
 #include <cstdio>
@@ -9,79 +9,79 @@ for Louise Francoise le Blanc de la valliere
 using namespace std;
 struct List{
 
-	struct nod{ //Á´±í»ù±¾ÔªËØ
-		int val; //ÔªËØ´¢´æµÄÊı¾İ
-		ChainListElement pre_element; //Ö¸ÏòÉÏÒ»¸öÔªËØµØÖ·
-		ChainListElement next_element; //Ö¸ÏòÏÂÒ»¸öÔªËØµØÖ·
+	struct nod{ //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ôªï¿½ï¿½
+		int val; //Ôªï¿½Ø´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		ChainListElement pre_element; //Ö¸ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Ôªï¿½Øµï¿½Ö·
+		ChainListElement next_element; //Ö¸ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Ôªï¿½Øµï¿½Ö·
 	};
 
-	ChainListElement head; //±íÍ·
-	ChainListElement tail; //±íÎ²
-	ChainListElement currentElement; //Î±µü´úÆ÷
-	int length; //¼ÇÂ¼±íÖĞÔªËØ¸öÊı
+	ChainListElement head; //ï¿½ï¿½Í·
+	ChainListElement tail; //ï¿½ï¿½Î²
+	ChainListElement currentElement; //Î±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	int length; //ï¿½ï¿½Â¼ï¿½ï¿½ï¿½ï¿½Ôªï¿½Ø¸ï¿½ï¿½ï¿½
 
-	List(){  //¹¹Ôìº¯Êı£¬ÔÚ´´½¨Á´±íÊ±Îª±íÍ·±íÎ²·ÖÅä¿Õ¼ä
+	List(){  //ï¿½ï¿½ï¿½ìº¯ï¿½ï¿½ï¿½ï¿½ï¿½Ú´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±Îªï¿½ï¿½Í·ï¿½ï¿½Î²ï¿½ï¿½ï¿½ï¿½Õ¼ï¿½
 		head = (ChainListElement) malloc(sizeof(ChainListElement));
 		tail = (ChainListElement) malloc(sizeof(ChainListElement));
 		head->pre_element = NULL;
 		head->next_element = tail;
 		tail->pre_element = head;
 		tail->next_element = NULL;
-		currentElement = head; //½«Î±µü´úÆ÷Ö¸Ïò±íÍ·
+		currentElement = head; //ï¿½ï¿½Î±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¸ï¿½ï¿½ï¿½Í·
 	}
 
-	void push_back(int v){ //´ÓÁ´±íµÄÎ²²¿²åÈëÒ»¸öÔªËØ
-		ChainListElement previousElement = tail->pre_element;  //²åÈëÇ° ±íÎ²Ç°ÃæµÄÒ»¸öÔªËØ
-		ChainListElement insertElement = (ChainListElement) malloc(sizeof(ChainListElement)); //½«Òª²åÈëµÄÔªËØ
+	void push_back(int v){ //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Ôªï¿½ï¿½
+		ChainListElement previousElement = tail->pre_element;  //ï¿½ï¿½ï¿½ï¿½Ç° ï¿½ï¿½Î²Ç°ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Ôªï¿½ï¿½
+		ChainListElement insertElement = (ChainListElement) malloc(sizeof(ChainListElement)); //ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½ï¿½Ôªï¿½ï¿½
 		
 		insertElement->val = v;
 		insertElement->pre_element = previousElement;  
 		previousElement->next_element = insertElement;
 		insertElement->next_element = tail;
-		tail->pre_element = insertElement; //¸ü¸ÄÔªËØpre nextÖ¸ÏòµØÖ·£¬Íê³É²åÈë²Ù×÷
+		tail->pre_element = insertElement; //ï¿½ï¿½ï¿½ï¿½Ôªï¿½ï¿½pre nextÖ¸ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½É²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 		length++;
 	}
 
-	void push(int v){ //´ÓÁ´±íµÄÍ·²¿²åÈëÒ»¸öÔªËØ
+	void push(int v){ //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Ôªï¿½ï¿½
 		insert(v,0);
 	}
 
-	bool insert(int v,int pos){ //´ÓÖ¸¶¨Î»ÖÃ²åÈëÒ»¸öÔªËØ //×¢Òâ£º´Ë´¦¶¨ÒåÁ´±íÊ×¸öÔªËØÎ»ÖÃÎª0
-		if(pos<0 || pos>length) return false; //·Ç·¨Î»ÖÃ ·µ»Øfalse ÖÕÖ¹²Ù×÷
+	bool insert(int v,int pos){ //ï¿½ï¿½Ö¸ï¿½ï¿½Î»ï¿½Ã²ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Ôªï¿½ï¿½ //×¢ï¿½â£ºï¿½Ë´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×¸ï¿½Ôªï¿½ï¿½Î»ï¿½ï¿½Îª0
+		if(pos<0 || pos>length) return false; //ï¿½Ç·ï¿½Î»ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½false ï¿½ï¿½Ö¹ï¿½ï¿½ï¿½ï¿½
 
 		ChainListElement tempElement = head;
-		while(pos--) tempElement = tempElement->next_element; //ÕÒµ½²åÈëÎ»ÖÃÔªËØÇ°Ò»¸öÔªËØ
-		ChainListElement nextElement = tempElement->next_element;  //²åÈëÎ»ÖÃÔªËØ
+		while(pos--) tempElement = tempElement->next_element; //ï¿½Òµï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½Ôªï¿½ï¿½Ç°Ò»ï¿½ï¿½Ôªï¿½ï¿½
+		ChainListElement nextElement = tempElement->next_element;  //ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½Ôªï¿½ï¿½
 
-		ChainListElement insertElement = (ChainListElement) malloc(sizeof(ChainListElement)); //½«Òª²åÈëµÄÔªËØ
+		ChainListElement insertElement = (ChainListElement) malloc(sizeof(ChainListElement)); //ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½ï¿½Ôªï¿½ï¿½
 		insertElement->val = v;
 		insertElement->pre_element = tempElement;
 		tempElement->next_element = insertElement;
 		insertElement->next_element = nextElement;
-		nextElement->pre_element = insertElement;  //¸ü¸ÄÔªËØpre nextÖ¸ÏòµØÖ·£¬Íê³É²åÈë²Ù×÷
+		nextElement->pre_element = insertElement;  //ï¿½ï¿½ï¿½ï¿½Ôªï¿½ï¿½pre nextÖ¸ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½É²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 		length++;
-		return true;  //²Ù×÷³É¹¦ ·µ»Øtrue
+		return true;  //ï¿½ï¿½ï¿½ï¿½ï¿½É¹ï¿½ ï¿½ï¿½ï¿½ï¿½true
 	}
 
-	void pop_back(){ //É¾³ıÁ´±íÖĞ×îºóÒ»¸öÔªËØ
+	void pop_back(){ //É¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Ôªï¿½ï¿½
 		if(!length) return ;
 
-		ChainListElement deleteElement = tail->pre_element;  //½«ÒªÉ¾³ıµÄÔªËØ
+		ChainListElement deleteElement = tail->pre_element;  //ï¿½ï¿½ÒªÉ¾ï¿½ï¿½ï¿½ï¿½Ôªï¿½ï¿½
 		ChainListElement previousElement = deleteElement->pre_element;
 		previousElement->next_element = tail;
 		tail->pre_element = previousElement;
 
-		free(deleteElement); //ÊÍ·ÅÉ¾³ıÔªËØµÄÄÚ´æ //VS code»á±¨Òì³££¬Ô­ÒòÎ´Öª£¬µ«³ÌĞò¿ÉÕıÈ·Ö´ĞĞ
+		free(deleteElement); //ï¿½Í·ï¿½É¾ï¿½ï¿½Ôªï¿½Øµï¿½ï¿½Ú´ï¿½ //VS codeï¿½á±¨ï¿½ì³£ï¿½ï¿½Ô­ï¿½ï¿½Î´Öªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È·Ö´ï¿½ï¿½
 	}
 
-	void pop(){ //É¾³ıÁ´±íÖĞÊ×¸öÔªËØ
+	void pop(){ //É¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×¸ï¿½Ôªï¿½ï¿½
 		if(!length) return ;
 		deleteElement(0);
 	}
 
-	bool deleteElement(int pos){ //É¾³ıÁ´±íÖĞÖ¸¶¨Î»ÖÃµÄÔªËØ
+	bool deleteElement(int pos){ //É¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¸ï¿½ï¿½Î»ï¿½Ãµï¿½Ôªï¿½ï¿½
 		if(pos<0 || pos>= length) return false;
 
 		ChainListElement deleteElement = head->next_element;
@@ -96,36 +96,36 @@ struct List{
 		return true;
 	}
 
-	ChainListElement getIterator(){ //»ñÈ¡Î±µü´úÆ÷
+	ChainListElement getIterator(){ //ï¿½ï¿½È¡Î±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		return currentElement;
 	}
 
-	ChainListElement moveToNext(){ //½«Î±µü´úÆ÷ÒÆÏòÏÂÒ»¸öÔªËØ²¢·µ»ØÎ±µü´úÆ÷
-		if(!currentElement->next_element) return currentElement; //Î±µü´úÆ÷Ö¸Ïò±íÎ²£¬Ö±½Ó·µ»Ø
+	ChainListElement moveToNext(){ //ï¿½ï¿½Î±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Ôªï¿½Ø²ï¿½ï¿½ï¿½ï¿½ï¿½Î±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		if(!currentElement->next_element) return currentElement; //Î±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¸ï¿½ï¿½ï¿½Î²ï¿½ï¿½Ö±ï¿½Ó·ï¿½ï¿½ï¿½
 		return currentElement = currentElement->next_element;
 	}
 
-	ChainListElement moveToPrev(){ //½«Î±µü´úÆ÷ÒÆÏòÉÏÒ»¸öÔªËØ²¢·µ»ØÎ±µü´úÆ÷
-		if(!currentElement->pre_element) return currentElement; //Î±µü´úÆ÷Ö¸Ïò±íÍ·£¬Ö±½Ó·µ»Ø
+	ChainListElement moveToPrev(){ //ï¿½ï¿½Î±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Ôªï¿½Ø²ï¿½ï¿½ï¿½ï¿½ï¿½Î±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		if(!currentElement->pre_element) return currentElement; //Î±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¸ï¿½ï¿½ï¿½Í·ï¿½ï¿½Ö±ï¿½Ó·ï¿½ï¿½ï¿½
 		return currentElement = currentElement->pre_element;
 	}
 
-	ChainListElement moveToHead(){ //½«Î±µü´úÆ÷ÒÆÖÁ±íÍ·²¢·µ»ØÎ±µü´úÆ÷
+	ChainListElement moveToHead(){ //ï¿½ï¿½Î±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		while(currentElement->pre_element) currentElement = currentElement->pre_element;
 		return currentElement;
 	}
 
-	ChainListElement moveToTail(){ //½«Î±µü´úÆ÷ÒÆÖÁ±íÎ²²¢·µ»ØÎ±µü´úÆ÷
+	ChainListElement moveToTail(){ //ï¿½ï¿½Î±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		while(currentElement->next_element) currentElement = currentElement->next_element;
 		return currentElement;
 	}
 
-	bool hasNext(){ //Î±µü´úÆ÷ÊÇ·ñ»¹ÓĞÏÂÒ»¸öÔªËØ(ÔªËØ²»°üÀ¨±íÍ·±íÎ²)
+	bool hasNext(){ //Î±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Ôªï¿½ï¿½(Ôªï¿½Ø²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í·ï¿½ï¿½Î²)
 		if(currentElement->next_element ? false : true) return false;
 		return currentElement->next_element->next_element ? true : false;
 	}
 
-	int size(){ //·µ»ØÁ´±íÖĞÔªËØ¸öÊı
+	int size(){ //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ôªï¿½Ø¸ï¿½ï¿½ï¿½
 		return length;
 	}
 };
@@ -133,7 +133,7 @@ void initList();
 void showList(bool);
 void deleteEle();
 void insertEle();
-List myList; //ÉùÃ÷²¢´´½¨Ò»¸öÁ´±í£¬¹¹Ôìº¯ÊıÔÚ´Ë´¦Ö´ĞĞ
+List myList; //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ìº¯ï¿½ï¿½ï¿½Ú´Ë´ï¿½Ö´ï¿½ï¿½
 int main(){
 	
 	char op;
@@ -141,17 +141,17 @@ int main(){
 		if(op=='\n' || op=='\r') continue;
 		switch(op){
 			case 'B':
-			initList(); //Ïò±íÖĞÌî³äÊı¾İ
+			initList(); //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			break;
 			case 'S':
-			showList(false); //ÕıÏò´ò±í
-			showList(true); //ÄæÏò´ò±í
+			showList(false); //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+			showList(true); //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			break;
 			case 'D':
-			deleteEle(); //É¾³ıÔªËØ
+			deleteEle(); //É¾ï¿½ï¿½Ôªï¿½ï¿½
 			break;
 			case 'I':
-			insertEle(); //²åÈëÔªËØ
+			insertEle(); //ï¿½ï¿½ï¿½ï¿½Ôªï¿½ï¿½
 			break;
 			default:
 			printf("please input legal command BSDI\n");
@@ -163,19 +163,19 @@ int main(){
 void initList(){
 	int n,k;
 
-	scanf("%d",&n); //ÊäÈëÌî³äÔªËØ¸öÊı
+	scanf("%d",&n); //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ôªï¿½Ø¸ï¿½ï¿½ï¿½
 	while(n--){
 		scanf("%d",&k);
-		myList.push_back(k); //½«Êı¾İ´ÓÎ²²¿²åÈëÁ´±í
+		myList.push_back(k); //ï¿½ï¿½ï¿½ï¿½ï¿½İ´ï¿½Î²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	}
 }
 void showList(bool is_reverse){
-	if(is_reverse){ //·´Ïò´ò±í
+	if(is_reverse){ //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		myList.moveToTail();
 		while(myList.moveToPrev()->pre_element){
 			printf("%d ",myList.getIterator()->val);
 		}
-	}else{ //ÕıÏò´ò±í
+	}else{ //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		myList.moveToHead();
 		while(myList.moveToNext()->next_element){
 			printf("%d ",myList.getIterator()->val);
@@ -186,14 +186,14 @@ void showList(bool is_reverse){
 void deleteEle(){
 	int n;
 
-	scanf("%d",&n);  //ÊäÈëÉ¾³ıÔªËØÎ»ÖÃ
+	scanf("%d",&n);  //ï¿½ï¿½ï¿½ï¿½É¾ï¿½ï¿½Ôªï¿½ï¿½Î»ï¿½ï¿½
 	if(!myList.deleteElement(n))
-		printf("illgal command!\n"); //·Ç·¨Î»ÖÃ
+		printf("illgal command!\n"); //ï¿½Ç·ï¿½Î»ï¿½ï¿½
 }
 void insertEle(){
 	int n,k;
 
-	scanf("%d %d",&n,&k); //ÊäÈë²åÈëÎ»ÖÃºÍÊı¾İ
+	scanf("%d %d",&n,&k); //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½Ãºï¿½ï¿½ï¿½ï¿½ï¿½
 	if(!myList.insert(k,n))
-		printf("illgal command!\n"); //·Ç·¨Î»ÖÃ
+		printf("illgal command!\n"); //ï¿½Ç·ï¿½Î»ï¿½ï¿½
 }

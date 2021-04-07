@@ -135,3 +135,15 @@ void dfsFin(int cur,int fat){
 	}
 	if(tre[root[cur]].cnt) ans[cur] = tre[root[cur]].num;
 }
+
+//线段树有两种主流的分配空间方法
+//(1)	ls: root << 1  rs: (root << 1) | 1
+//(2)	root = ++tot;
+//注：root都从1开始
+//(1)法ls和rs下标是确定的，知道根就可以递推
+//(2)法为动态分配空间，必须记录ls和rs
+
+//求lca也有好几种方法，我更倾向于倍增
+
+//此处线段树的合并是一次性的
+//如果想多次合并应该像主席树一样分配新的空间

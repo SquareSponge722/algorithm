@@ -117,3 +117,8 @@ double fin1(int k,int lim){
 	if(bsum) return (double) asum / bsum;
 	return INF;
 }
+
+//这道题可以说是思路非常巧妙，多一人少一人都不可以用倍增来做
+//正好两人，使得倍增天数（除0外）后的一天永远是A来开车
+
+//对于静态区域查询都可以考虑倍增，log（N）可不是一般的爽
