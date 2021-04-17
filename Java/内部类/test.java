@@ -1,5 +1,3 @@
-package Java.内部类学习;
-
 
 public class test {
     public static void main(String[] args) {

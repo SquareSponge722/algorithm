@@ -1,4 +1,3 @@
-package Java.内部类学习;
 
 public class person {
     private String name;
