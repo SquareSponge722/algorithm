@@ -1,4 +1,6 @@
-#include<bits/stdc++.h>
+#include <cstdio>
+#include <cstdlib>
+#include <deque>
 using namespace std;
 const int N = 200100;
 int t,n,k;
