@@ -89,7 +89,7 @@ long long dfs(int now,long long flow){
         ste[now] = i;
         if(dis[ed[i].to] != dis[now] + 1 || ed[i].val <= 0) continue;
         tmp = dfs(ed[i].to,min(flow,ed[i].val));
-        if(!tmp) dis[ed[i].to] = 0;
+        if(!tmp) dis[ed[i].to] = 0; //剪枝 去除无法抵达汇点的下一个节点
         sum += tmp;
         flow -= tmp;
         ed[i].val -= tmp;
