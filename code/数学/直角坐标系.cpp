@@ -13,7 +13,6 @@
 
 #define zero(x) (((x) > 0 ? (x) : -(x)) < eps)
 #define eps 1.0E-8
-#define MAX_POINT_NUM 0
 
 using namespace std;
 
@@ -67,7 +66,7 @@ struct Point{ //点 向量
     }
 };
 struct Line{
-    Point a, b;
+    Point a, b; //a点为靠近原点的点
     Point direction; //方向向量
 
     Line() {}
@@ -78,10 +77,17 @@ struct Line{
     Point calcDirection(){ //计算方向向量
         return direction = Point(a,b);
     }
-    bool parallel(Line &ot){ //判断直线是否平行
+    bool parallel(const Line &ot){ //判断直线是否平行
         return zero(direction.crossProduct(ot.direction));
     }
-    Point intersectionBeeline(Line &ot){ //求两直线的交点，斜率相同的话res=a
+    bool pointInLeft(const Point &p){ //判断点是否在直线左侧
+        Point vec = Point(a,p);
+        return direction.crossProduct(vec) > 0;
+    }
+    bool pointInLine(Point &p){ //判断点是否在直线上
+        return p.inLine(a,b);
+    }
+    Point intersectionBeeline(const Line &ot){ //求两直线的交点，斜率相同的话res=a
         Point res = a;
         Point vec = direction;
         double t = Point(ot.a,a).crossProduct(Point(ot.a,ot.b)) / Point(b,a).crossProduct(Point(ot.a,ot.b));
@@ -136,7 +142,7 @@ int main()
         for(int i = 0;i < 3;i++){
             Point v1 = Point(p[i],p[(i + 1) % 3]);
             Point v2 = Point(p[i],p[(i + 2) % 3]);
-            if(double_cmp(v1.dotProduct(v2)) <= 0){
+            if(double_cmp(v1.dotProduct(v2)) <= 0){ //钝角三角形最小圆心在钝角对应的边上
                 o.x = (p[(i + 1) % 3].x + p[(i + 2) % 3].x) / 2;
                 o.y = (p[(i + 1) % 3].y + p[(i + 2) % 3].y) / 2;
                 dis = o.distance(p[(i + 1) % 3]);
