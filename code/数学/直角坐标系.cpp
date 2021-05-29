@@ -11,8 +11,8 @@
 #include <set>
 #include <iostream>
 
-#define zero(x) (((x) > 0 ? (x) : -(x)) < eps)
 #define eps 1.0E-8
+#define zero(x) (((x) > 0 ? (x) : -(x)) < eps)
 
 using namespace std;
 
