@@ -13,18 +13,31 @@
 
 using namespace std;
 
-const int N = 1e6  + 10;
+const int N = 2e6  + 10;
 
 int n;
 char str[N];
 
 int tot;
 int tr[N][26];
-int e[N],fail[N];
+int fail[N];
+
+int indx;
+int idx[N],cnt[N];
+
+int all;
+int to[N],nxt[N],head[N];
 
 void insert();
 void build();
-int query();
+void query();
+void dfs(int);
+
+inline void addEdge(int u,int v){
+	to[++all] = v;
+	nxt[all] = head[u];
+	head[u] = all;
+}
 
 int main(){
 	scanf("%d",&n);
@@ -34,7 +47,14 @@ int main(){
 	}
 	build();
 	scanf("%s",str);
-	printf("%d\n",query());
+	query();
+
+	for(int i = 1;i <= tot;i++)
+		addEdge(fail[i],i);
+	dfs(0);
+
+	for(int i = 1;i <= n;i++)
+		printf("%d\n",cnt[idx[i]]);
 	return 0;
 }
 
@@ -44,7 +64,7 @@ void insert(){ //建trie树
 		if(tr[u][str[i] - 'a'] == 0) tr[u][str[i] - 'a'] = ++tot;
 		u = tr[u][str[i] - 'a'];
 	}
-	e[u]++;
+	idx[++indx] = u;
 }
 void build(){ //处理fail指针
 	queue <int> q;
@@ -63,17 +83,19 @@ void build(){ //处理fail指针
 		}
 	}
 }
-int query(){
-	int res = 0,u = 0;
+void query(){
+	int u = 0;
 	for(int i = 0;str[i];i++){
 		u = tr[u][str[i] - 'a'];
-		for(int j = u;j && e[j] != -1;j = fail[j]){
-			res += e[j];
-			e[j] = -1;
-		}
+		cnt[u]++;
 	}
-	return res;
+}
+void dfs(int id){ //对fail树处理求和
+	for(int cur = head[id];cur;cur = nxt[cur]){
+		dfs(to[cur]);
+		cnt[id] += cnt[to[cur]];
+	}
 }
 
-//ac自动机 洛谷 P3808
-//2021-6-4
+//ac自动机 洛谷 P5357
+//2021-6-9
