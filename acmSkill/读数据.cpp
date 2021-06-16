@@ -24,14 +24,14 @@ int main(){
         int tot1 = 0;
         do{
             scanf("%d",&array1[i][tot1++]);
-        }while(getchar() != '\n'); //是不是非常神奇
+        }while(getchar() != '\n');
     }
     
     //2
     //对于读入一行带空格的字符串
     string str2;
     //cin >> str2; 这是明显不行的
-    getline(cin,str2); //还用啥gets()
+    getline(cin,str2);
 
     return 0;
 }
