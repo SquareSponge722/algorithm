@@ -14,7 +14,7 @@
 using namespace std;
 
 const int N = 1e5 + 10;
-const int M = N - 10;
+const int M = N - 9;
 const long long MOD = 998244353;
 
 int t,n;
@@ -30,7 +30,8 @@ long long qpow(long long x,long long y){
     }
     return res;
 }
-inline long long nCr(long long x,long long y){
+inline long long nCr(long long x,long long y){ //x 中选 y 个
+    if(y < 0 || x < y) return 0;
     return fac[x] * inv[y] % MOD * inv[x - y] % MOD;
 }
 
