@@ -239,3 +239,131 @@ long long tre_search(int l,int r,int x,int y,int id)
 //AHOI 2009
 //2021-5-24
 */
+
+
+/*
+#include <cstdio>
+#include <cstdlib>
+#include <algorithm>
+#include <cmath>
+#include <queue>
+#include <stack>
+#include <vector>
+#include <cstring>
+#include <string>
+#include <map>
+#include <set>
+#include <iostream>
+
+using namespace std;
+
+#define lson(k) (k << 1)
+#define rson(k) (k << 1 | 1)
+#define ll long long
+const int N = 1e6 + 10;
+
+struct node{
+    int l,r;
+    ll out,in,dura; //最早出块时间 最晚入块时间 块中cost总和
+    bool isOk;
+}tre[N << 2];
+
+int t,n,q;
+int u[N],v[N],cost[N];
+
+void build(int,int,int);
+void update(int,int);
+node query(int,int,int);
+node merge(int,int);
+
+inline void push(int k){
+    tre[k].isOk = tre[lson(k)].isOk && tre[rson(k)].isOk;
+    if(tre[lson(k)].out > tre[rson(k)].in) tre[k].isOk = false;
+    
+    tre[k].out = max(tre[lson(k)].out + tre[rson(k)].dura,tre[rson(k)].out);
+    tre[k].in = min(tre[lson(k)].in,tre[rson(k)].in - tre[lson(k)].dura);
+    tre[k].dura = tre[lson(k)].dura + tre[rson(k)].dura;
+}
+
+int main(){
+    scanf("%d",&t);
+    while(t--){
+        scanf("%d",&n);
+        for(int i = 1;i <= n;i++) scanf("%d",&u[i]);
+        for(int i = 1;i <= n;i++) scanf("%d",&v[i]);
+        for(int i = 1;i < n;i++) scanf("%d",&cost[i]);
+
+        build(1,1,n);
+
+        int ord,x,y,z;
+        scanf("%d",&q);
+        while(q--){
+            scanf("%d %d %d",&ord,&x,&y);
+            if(ord == 0){
+                node ans = query(1,x,y);
+                printf("%s\n",ans.isOk ? "Yes" : "No");
+            }else if(ord == 1){
+                cost[x] = y;
+                update(1,x);
+            }else{
+                scanf("%d",&z);
+                u[x] = y;v[x] = z;
+                update(1,x);
+            }
+        }
+    }
+    return 0;
+}
+
+void build(int cur,int l,int r){
+    tre[cur].l = l;tre[cur].r = r;
+    if(l == r){
+        tre[cur].out = u[l] + cost[l];
+        tre[cur].in = v[l];
+        tre[cur].dura = cost[l];
+        tre[cur].isOk = true;
+        return ;
+    }
+    int mid = (l + r) >> 1;
+    build(lson(cur),l,mid);
+    build(rson(cur),mid + 1,r);
+    push(cur);
+}
+void update(int cur,int pos){
+    if(tre[cur].l == tre[cur].r && tre[cur].l == pos){
+        tre[cur].out = u[tre[cur].l] + cost[tre[cur].l];
+        tre[cur].in = v[tre[cur].l];
+        tre[cur].dura = cost[tre[cur].l];
+        tre[cur].isOk = true;
+        return ;
+    }
+    int mid = (tre[cur].l + tre[cur].r) >> 1;
+    if(pos <= mid) update(lson(cur),pos);
+    else update(rson(cur),pos);
+    push(cur);
+}
+node merge(const node& l,const node& r){
+    node ans;
+    ans.isOk = l.isOk && r.isOk;
+    if(l.out > r.in) ans.isOk = false;
+    
+    ans.out = max(l.out + r.dura,r.out);
+    ans.in = min(l.in,r.in - l.dura);
+    ans.dura = l.dura + r.dura;
+
+    return ans;
+}
+node query(int cur,int l,int r){
+    if(l <= tre[cur].l && tre[cur].r <= r) return tre[cur];
+    int mid = (tre[cur].l + tre[cur].r) >> 1;
+    if(r <= mid) return query(lson(cur),l,r);
+    else if(l > mid) return query(rson(cur),l,r);
+    else return merge(query(lson(cur),l,r),query(rson(cur),l,r));
+}
+
+//线段树和分块的思想很相近
+//化整为零，块与块之间的状态更新
+
+//https://ac.nowcoder.com/acm/contest/11166/J
+//2021-7-18
+*/
