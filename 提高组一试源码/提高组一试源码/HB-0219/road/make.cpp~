@@ -1,9 +1,0 @@
-#include <ctime>
-#include <cstdio>
-#include <cstdlib>
-int main() {
-	srand(time(NULL));
-	int n = 6; printf("%d\n", n);
-	while (n--) printf("%d ", rand() % 10); puts("");
-	return 0;
-}
