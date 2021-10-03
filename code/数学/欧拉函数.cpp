@@ -138,5 +138,5 @@ ll query(int cur,int l,int r){
  *      - Euler(P) = P - 1
  * */
 
-//2021 icpc2 L Euler Function
+//2021 icpc网络赛2 L Euler Function
 //https://pintia.cn/problem-sets/1441745686294945792/problems/1441745856154955787
